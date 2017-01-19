@@ -7,6 +7,9 @@ namespace kiroo
 {
 	public class Image
 	{
+		public const int WIDTH		= 1920;
+		public const int HEIGHT		= 1080;
+
 		public Image ()
 		{
 			Console.WriteLine ( " Rendering image..." );
@@ -26,14 +29,14 @@ namespace kiroo
 
 		private Bitmap Render ()
 		{
-			var bmap = new Bitmap ( 1920, 1080 );
-			var colors = RandomizeColors ();	// Color [1920 * 1080]
+			var bmap = new Bitmap ( WIDTH, HEIGHT );
+			var colors = RandomizeColors ();	// Color [WIDTH * HEIGHT]
 
-			for ( int y = 0; y != 1080; y++ )
+			for ( int y = 0; y != HEIGHT; y++ )
 			{
-				for ( int x = 0; x != 1920; x++ )
+				for ( int x = 0; x != WIDTH; x++ )
 				{
-					bmap.SetPixel ( x, y, colors[1920 * y + x] );
+					bmap.SetPixel ( x, y, colors[WIDTH * y + x] );
 
 				}
 			}
@@ -43,8 +46,8 @@ namespace kiroo
 
 		private Color[] RandomizeColors ()
 		{
-			var bytes		= new byte [1920 * 1080 * 3];       // RGB pixel = 3 bytes
-			var colors      = new Color[1920 * 1080];
+			var bytes		= new byte [WIDTH * HEIGHT * 3];       // RGB pixel = 3 bytes
+			var colors      = new Color[WIDTH * HEIGHT];
 			var rnd			= RandomNumberGenerator.Create ();
 
 			rnd.GetBytes ( bytes );
